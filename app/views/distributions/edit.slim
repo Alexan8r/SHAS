@@ -1,0 +1,28 @@
+.row
+  .col
+    h2 Изменение данных рассылки #{@distribution.title}
+  .col-6.text-right
+    .pt-1
+      = link_to distribution_path(@distribution), data: {confirm: 'Вы уверены?'}, method: :delete, class: 'btn btn-outline-secondary ml-2'
+        span.i.fas.fa-trash-alt
+        span.ml-1 Удалить
+      = link_to distributions_path, class: 'btn btn-outline-secondary ml-2'
+        span.i.fas.fa-list
+
+= simple_form_for @distribution do |f|
+  .row.my-3
+    .col-md-6
+      .mt-2
+        .row
+          = f.input :title, label: false, placeholder: 'Название'
+        .row
+          = f.input :body, label: false, placeholder: 'Сообщение'
+        .row
+          = f.input :time, label: false, placeholder: 'Период отправки'
+        .row
+          = f.input :randomizer, as: :boolean
+        .row
+          = f.input :email
+
+  .form-actions.my-2
+    = f.button :submit, 'Сохранить', class: 'btn btn-primary'

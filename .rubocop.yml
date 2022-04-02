@@ -1,0 +1,133 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+Performance:
+  enabled: true
+
+Rails:
+  Enabled: true
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - !ruby/regexp /old_and_unused\.rb$/
+    - !ruby/regexp /.axlsx$/
+    - 'bin/*'
+    - 'config/'
+    - 'config/**/*'
+    - 'db/*'
+    - 'db/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'spec/**/*'
+    - 'lib/tasks/**/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/controllers/api/dashboard_controller.rb'
+    - 'app/controllers/admin/positions_controller.rb'
+    - 'app/controllers/home_controller.rb'
+    - 'app/controllers/vacations_controller.rb'
+    - 'app/lib/yandex_connect.rb'
+    - 'app/mailers/user_mailer.rb'
+    - 'app/uploaders/avatar_uploader.rb'
+    - 'lib/trash.rb'
+  Max: 20
+
+Metrics/ClassLength:
+  Max: 220
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/trash.rb'
+  Max: 10
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/controllers/api/orders_controller.rb'
+  Max: 55
+
+Style/MixinUsage:
+  Exclude:
+    - "**/*_spec.rb"
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/EnumHash:
+  Enabled: false
+
+Layout/LineLength:
+  Exclude:
+    - "**/*.jbuilder"
+  Max: 200
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - stage
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
+
+Rails/EnvironmentVariableAccess:
+  Exclude:
+    - 'lib/omni_auth/**/*'
+    - 'app/lib/**/*'

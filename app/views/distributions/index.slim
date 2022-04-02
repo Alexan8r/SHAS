@@ -1,0 +1,57 @@
+.col.text-right
+  .btn.btn-outline-primary role="button" data-toggle="modal" data-target="#modalAttachment"
+    span.i.fas.fa-plus
+    span.ml-1 Добавить
+
+.row.ml-2.mt-2
+  - if @distributions.present?
+    .table-responsive
+      table.table.table-hover
+        thead
+          tr
+            th Наименование
+            th Содержание
+            th Время генерации(сек)
+            th Рандомное время генерации
+            th
+        tbody
+          - @distributions.each do |d|
+            tr
+              td = d.title
+              td = d.body
+              td = d.time
+              td = d.randomizer
+              td.btn-group-toggle
+                = link_to distribution_path(d), class: 'btn btn-outline-secondary btn-sm mr-1'
+                  span.i.fas.fa-search
+                = link_to edit_distribution_path(d), class: 'btn btn-outline-secondary btn-sm'
+                  span.i.fas.fa-pencil-alt
+  - else
+    .lead.text-center.mt-4
+      ' Нет рассылок.
+
+.modal.fade#modalAttachment tabindex="-1" role="dialog" aria-labelledby="modaladd" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered role="document"
+    .modal-content
+      = simple_form_for Distribution.new, url: distributions_path, method: :post do |f|
+        .modal-header
+          h5.modal-title#modaladd Добавить рассылку
+          button.close type="button" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" &times;
+        .modal-body
+          .form-inputs.ml-2
+            .mt-2
+              .row
+                = f.input :title, label: false, placeholder: 'Название'
+              .row
+                = f.input :body, label: false, placeholder: 'Сообщение'
+              .row
+                = f.input :time, label: false, placeholder: 'Период отправки'
+              .row
+                = f.input :email, label: false, placeholder: 'email'
+              .row
+                = f.input :randomizer, as: :boolean
+
+        .modal-footer
+          button.btn.btn-secondary type="button" data-dismiss="modal" Отмена
+          = f.button :submit, 'Добавить', class: 'btn btn-primary'

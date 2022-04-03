@@ -1,0 +1,20 @@
+- if @messages.present?
+  .table-responsive
+    table.table.table-hover
+      thead
+        tr
+          th Наименование
+          th Содержание
+          th Время получения
+          th Email
+          th
+      tbody
+        - @messages.each do |d|
+          tr
+            td = d.title
+            td = d.body
+            td = d.created_at
+            td = d.email
+- else
+  .lead.text-center.mt-4
+    ' Нет сообщений.

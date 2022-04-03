@@ -1,0 +1,19 @@
+- if @versions.count > 0
+  table.table.table-hover
+    thead
+      tr
+        th ID
+        th style='min-width: 80px;' Item type
+        th Event
+        th Author / DateTime
+    tbody
+      tr
+      - @versions.each do |version|
+        tr
+          td= version.id
+          td= version.item_type
+          td= version.event
+          td= version.item_id
+- else
+  p.my-5.text-center.lead
+    ' Нет изменений

@@ -14,9 +14,10 @@ class DistributionsController < ApplicationController
   def create
     @distribution = Distribution.new(distribution_params)
     if @distribution.save
+      Message.create(title: @distribution.title, body: @distribution.body, email: @distribution.email )
       redirect_to distributions_path, notice: 'Distribution was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to distributions_path, notice: 'Error.'
     end
   end
 
@@ -40,6 +41,7 @@ class DistributionsController < ApplicationController
   end
 
   def distribution_params
-    params.require(:distribution).permit(:title, :body, :time, :randomizer)
+    params.require(:distribution).permit(:title, :body, :time, :randomizer, :email)
   end
+
 end

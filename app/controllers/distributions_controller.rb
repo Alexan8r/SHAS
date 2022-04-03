@@ -48,10 +48,12 @@ class DistributionsController < ApplicationController
     if randomizer == 'false'
       time.times do
         Message.create(title: title, body: body, email: email)
+        DistMailer.spam_mail(title, body, email).deliver_now
       end
     else
       rand(50).times do
         Message.create(title: title, body: body, email: email)
+        DistMailer.spam_mail(title, body, email).deliver_now
       end
     end
   end
